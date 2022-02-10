@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,9 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('user.dashboard');
 })->middleware(['auth:users'])->name('dashboard');
+
+Route::get('/index', [AttendanceController::class, 'index'])
+    ->middleware(['auth:users'])
+    ->name('index');
 
 require __DIR__.'/auth.php';
