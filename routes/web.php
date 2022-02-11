@@ -25,5 +25,11 @@ Route::get('/dashboard', function () {
 Route::get('/index', [AttendanceController::class, 'index'])
     ->middleware(['auth:users'])
     ->name('index');
+Route::post('/attendance', [AttendanceController::class, 'attendanceStamp'])
+    ->middleware('auth:users')
+    ->name('attendanceStamp');
+Route::post('/leaveWork', [AttendanceController::class, 'leaveWorkStamp'])
+    ->middleware('auth:users')
+    ->name('leaveWorkStamp');
 
 require __DIR__.'/auth.php';
