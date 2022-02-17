@@ -31,5 +31,9 @@ Route::post('/attendance', [AttendanceController::class, 'attendanceStamp'])
 Route::post('/leaveWork', [AttendanceController::class, 'leaveWorkStamp'])
     ->middleware('auth:users')
     ->name('leaveWorkStamp');
+Route::get('/attendanceRecord', [AttendanceController::class, 'attendanceRecord'])
+    ->middleware('auth:users')
+    ->name('attendanceRecord');
+
 
 require __DIR__.'/auth.php';
