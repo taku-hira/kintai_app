@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\User\UserController;
 
 Route::get('/', function () {
     return view('admin.welcome');
@@ -18,6 +19,9 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth:admin'])->name('dashboard');
 
+Route::get('index', [UserController::class, 'index'])
+    ->middleware(['auth:admin'])
+    ->name('index');
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
                 ->middleware('guest')
