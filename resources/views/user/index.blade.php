@@ -19,7 +19,7 @@
                     </div>
                 @endif
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="border bg-gray-300 text-center w-1/2 my-16 mx-auto p-4 text-3xl text-gray-500 md:text-6xl">
+                    <div class="border bg-gray-100 text-center w-1/2 my-16 mx-auto p-4 text-3xl text-gray-500 md:text-6xl">
                         <div class="mx-auto my-4" id="clock_date"></div>
                         <div class="mx-auto my-4" id="clock_time"></div>
                     </div>

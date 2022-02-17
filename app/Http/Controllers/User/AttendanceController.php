@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\Attendance;
+use App\Models\User;
 
 class AttendanceController extends Controller
 {
@@ -59,5 +60,21 @@ class AttendanceController extends Controller
             return redirect()->route('user.index')->with('flash_message', '退勤打刻が完了しました')
                                                 ->with('error', '出勤記録が登録されていません');
         }
+    }
+
+    public function attendanceRecord()
+    {
+        $user_id = Auth::id();
+        $attendance_records = User::FindOrFail($user_id)->attendances()->get();
+
+        $record = [];
+        foreach ($attendance_records as $attendance_record) {
+            $record[$attendance_record->date] = $attendance_record;
+        }
+
+
+        // $attendance_records = Attendance::where('user_id', $user_id);
+
+        return view('user.attendanceRecord', compact('record'));
     }
 }

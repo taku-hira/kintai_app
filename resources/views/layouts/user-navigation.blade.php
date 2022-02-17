@@ -18,7 +18,7 @@
                     <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
                         ホーム画面
                     </x-nav-link>
-                    <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
+                    <x-nav-link :href="route('user.attendanceRecord')" :active="request()->routeIs('user.attendanceRecord')">
                         勤怠履歴
                     </x-nav-link>
                     <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
@@ -75,10 +75,10 @@
             <x-responsive-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
+            <x-responsive-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
                 ホーム
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
+            <x-responsive-nav-link :href="route('user.attendanceRecord')" :active="request()->routeIs('user.attendanceRecord')">
                 勤怠履歴
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
