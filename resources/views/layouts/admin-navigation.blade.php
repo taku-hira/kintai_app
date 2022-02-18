@@ -15,8 +15,11 @@
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                    <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                         従業員一覧
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.users.create')" :active="request()->routeIs('admin.users.create')">
+                        従業員登録
                     </x-nav-link>
                 </div>
             </div>
@@ -69,8 +72,11 @@
             <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+            <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                 従業員一覧
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.users.create')" :active="request()->routeIs('admin.users.create')">
+                従業員登録
             </x-responsive-nav-link>
         </div>
 
