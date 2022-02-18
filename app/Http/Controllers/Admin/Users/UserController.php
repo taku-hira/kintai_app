@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::select('name', 'email', 'created_at')->get();
+        $users = User::select('id', 'name', 'email', 'created_at')->get();
 
         return view('admin.users.index', compact('users'));
     }
@@ -38,5 +38,12 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('admin.users.index')->with('flash_message', '従業員登録が完了しました');
+    }
+
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+
+        return view('admin.users.edit', compact('user'));
     }
 }

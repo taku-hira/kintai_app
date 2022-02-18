@@ -28,7 +28,7 @@
                                             <td class="px-4 py-3">{{ $user->email }}</td>
                                             <td class="px-4 py-3">{{ Carbon\Carbon::create($user->created_at)->format('Y/m/d') }}</td>
                                             <td class="px-4 py-3">
-                                                <button class="text-white bg-indigo-500 border-0 py-4 px-4 focus:outline-none hover:bg-indigo-600 rounded">編集する</button>
+                                                <button onclick="location.href='{{ route('admin.users.edit', ['id' => $user->id]) }}'" class="text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded">編集する</button>
                                             </td>
                                         </tr>
                                     @endforeach
