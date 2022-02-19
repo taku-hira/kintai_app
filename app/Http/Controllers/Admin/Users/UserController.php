@@ -57,4 +57,12 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.index')->with('flash_message', '更新完了しました');
     }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('admin.users.index')->with('flash_message', '削除しました');
+    }
 }
