@@ -21,7 +21,7 @@
                                         </ul>
                                     </div>
                                 @endif
-                                <form action="{{ route('admin.users.store') }}" method="POST">
+                                <form action="{{ route('admin.users.update', ['id' => $user->id]) }}" method="POST">
                                     @csrf
                                     <div class="flex flex-wrap -m-2">
                                     <div class="p-2 my-2 w-full">

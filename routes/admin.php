@@ -25,6 +25,7 @@ Route::prefix('users')->middleware(['auth:admin'])->group(function (){
     Route::get('create', [UserController::class, 'create'])->name('users.create');
     Route::post('store', [UserController::class, 'store'])->name('users.store');
     Route::get('edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+    Route::post('update/{id}', [UserController::class, 'update'])->name('users.update');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])

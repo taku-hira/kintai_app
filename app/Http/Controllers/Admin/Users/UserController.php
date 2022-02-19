@@ -46,4 +46,15 @@ class UserController extends Controller
 
         return view('admin.users.edit', compact('user'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        return redirect()->route('admin.users.index')->with('flash_message', '更新完了しました');
+    }
 }
