@@ -24,6 +24,7 @@
                                             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">メールアドレス</th>
                                             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">登録日</th>
                                             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                                            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -35,6 +36,15 @@
                                                 <td class="px-4 py-3">
                                                     <button onclick="location.href='{{ route('admin.users.edit', ['id' => $user->id]) }}'" class="text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded">編集する</button>
                                                 </td>
+                                                <form id="delete_{{ $user->id }}" method="POST" action="{{ route('admin.users.destroy', ['id' => $user->id]) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <td class="px-4 py-3">
+                                                        <a href="#" data-id="{{ $user->id }}" onclick="deletePost(this)" class="text-white bg-red-400 border-0 py-2 px-4 focus:outline-none hover:bg-red-500 rounded">
+                                                            削除する
+                                                        </a>
+                                                    </td>
+                                                </form>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -46,4 +56,5 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="{{ asset('/js/alert.js') }}"></script>
 </x-app-layout>
