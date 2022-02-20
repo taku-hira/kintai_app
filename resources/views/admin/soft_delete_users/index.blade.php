@@ -32,7 +32,7 @@
                                                 <td class="px-4 py-4">{{ $user->name }}</td>
                                                 <td class="px-4 py-4">{{ $user->email }}</td>
                                                 <td class="px-4 py-4">{{ Carbon\Carbon::create($user->deleted_at)->format('Y/m/d') }}</td>
-                                                <form id="delete_{{ $user->id }}" method="POST" action="{{ route('admin.users.destroy', ['id' => $user->id]) }}">
+                                                <form id="delete_{{ $user->id }}" method="POST" action="{{ route('admin.soft_delete_users.destroy', ['id' => $user->id]) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <td class="px-4 py-3">
