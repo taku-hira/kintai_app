@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('admin.users.create')" :active="request()->routeIs('admin.users.create')">
                         従業員登録
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.soft_delete_users.index')" :active="request()->routeIs('admin.soft_delete_users.index')">
+                        削除済従業員
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -77,6 +80,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.users.create')" :active="request()->routeIs('admin.users.create')">
                 従業員登録
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.soft_delete_users.index')" :active="request()->routeIs('admin.soft_delete_users.index')">
+                削除済従業員
             </x-responsive-nav-link>
         </div>
 
