@@ -32,6 +32,7 @@ Route::prefix('users')->middleware(['auth:admin'])->group(function (){
 
 Route::prefix('soft_delete_users')->middleware(['auth:admin'])->group(function (){
     Route::get('index', [SoftDeleteUserController::class, 'index'])->name('soft_delete_users.index');
+    Route::delete('destroy/{id}', [SoftDeleteUserController::class, 'destroy'])->name('soft_delete_users.destroy');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
