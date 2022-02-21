@@ -10,11 +10,13 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Attendance;
+use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
     /**
      * The attributes that are mass assignable.
      *
@@ -25,6 +27,8 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+    protected $softCascade = ['attendances'];
 
     /**
      * The attributes that should be hidden for serialization.
