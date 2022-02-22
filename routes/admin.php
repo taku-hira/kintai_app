@@ -39,6 +39,7 @@ Route::prefix('soft_delete_users')->middleware(['auth:admin'])->group(function (
 Route::prefix('shifts')->middleware(['auth:admin'])->group(function (){
     Route::get('index', [ShiftController::class, 'index'])->name('shifts.index');
     Route::get('create', [ShiftController::class, 'create'])->name('shifts.create');
+    Route::post('store', [ShiftController::class, 'store'])->name('shifts.store');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
