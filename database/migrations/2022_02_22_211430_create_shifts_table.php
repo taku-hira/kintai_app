@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSoftDeleteColumnAttendancesColumn extends Migration
+class CreateShiftsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddSoftDeleteColumnAttendancesColumn extends Migration
      */
     public function up()
     {
-        Schema::table('attendances', function (Blueprint $table) {
-            $table->softDeletes();
+        Schema::create('shifts', function (Blueprint $table) {
+            $table->id();
+            $table->string('shift_name');
+            $table->time('shift_start')->nullable();
+            $table->time('shift_end')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddSoftDeleteColumnAttendancesColumn extends Migration
      */
     public function down()
     {
-        Schema::table('attendances', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
+        Schema::dropIfExists('shifts');
     }
 }
