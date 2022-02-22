@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Users\UserController;
 use App\Http\Controllers\Admin\Users\SoftDeleteUserController;
+use App\Http\Controllers\Admin\ShiftController;
 use App\Models\User;
 
 Route::get('/', function () {
@@ -33,6 +34,10 @@ Route::prefix('users')->middleware(['auth:admin'])->group(function (){
 Route::prefix('soft_delete_users')->middleware(['auth:admin'])->group(function (){
     Route::get('index', [SoftDeleteUserController::class, 'index'])->name('soft_delete_users.index');
     Route::delete('destroy/{id}', [SoftDeleteUserController::class, 'destroy'])->name('soft_delete_users.destroy');
+});
+
+Route::prefix('shifts')->middleware(['auth:admin'])->group(function (){
+    Route::get('index', [ShiftController::class, 'index'])->name('shifts.index');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
