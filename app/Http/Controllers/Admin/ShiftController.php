@@ -14,4 +14,9 @@ class ShiftController extends Controller
 
         return view('admin.shifts.index', compact('shifts'));
     }
+
+    public function create()
+    {
+        return view('admin.shifts.create');
+    }
 }
