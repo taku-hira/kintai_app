@@ -40,6 +40,8 @@ Route::prefix('shifts')->middleware(['auth:admin'])->group(function (){
     Route::get('index', [ShiftController::class, 'index'])->name('shifts.index');
     Route::get('create', [ShiftController::class, 'create'])->name('shifts.create');
     Route::post('store', [ShiftController::class, 'store'])->name('shifts.store');
+    Route::get('edit/{id}', [ShiftController::class, 'edit'])->name('shifts.edit');
+    Route::post('update/{id}', [ShiftController::class, 'update'])->name('shifts.update');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])

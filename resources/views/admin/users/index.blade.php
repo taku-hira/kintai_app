@@ -49,6 +49,9 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="w-full text-center my-4">
+                                    <button onclick="location.href='{{ route('admin.users.create') }}'" class="text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded">新規従業員登録</button>
+                                </div>
                             </div>
                         </div>
                     </section>
