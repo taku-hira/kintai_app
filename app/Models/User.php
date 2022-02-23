@@ -49,7 +49,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function attendances()
+    public function attendance()
     {
         return $this->hasMany(Attendance::class);
     }
