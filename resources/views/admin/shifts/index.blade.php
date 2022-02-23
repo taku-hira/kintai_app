@@ -34,7 +34,7 @@
                                                 <td class="px-4 py-3">{{ $shift->shift_start . '-' . $shift->shift_end }}</td>
                                                 <td class="px-4 py-3">{{ Carbon\Carbon::create($shift->created_at)->format('Y/m/d') }}</td>
                                                 <td class="px-4 py-3">
-                                                    <button onclick="location.href=''" class="text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded">編集する</button>
+                                                    <button onclick="location.href='{{ route('admin.shifts.edit', ['id' => $shift->id]) }}'" class="text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded">編集する</button>
                                                 </td>
                                                 <form id="delete_{{ $shift->id }}" method="POST" action="{{ route('admin.users.destroy', ['id' => $shift->id]) }}">
                                                     @csrf
