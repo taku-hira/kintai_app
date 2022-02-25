@@ -16,7 +16,7 @@ class CreateAttendancesTable extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('shift_id')->constrained('shifts')->onDelete('cascade')->onUpdate('cascade')->nullable();
+            $table->foreignId('shift_id')->nullable()->constrained('shifts')->onDelete('cascade')->onUpdate('cascade');
             $table->date('date')->nullable();
             $table->dateTime('start_time')->nullable();
             $table->dateTime('end_time')->nullable();
