@@ -28,9 +28,10 @@
                         <thead>
                             <tr class="text-center border text-gray-100">
                                 <th class="border px-4 py-2 bg-indigo-500">日付</th>
-                                <th class="border px-4 py-2 bg-indigo-500">スケジュール</th>
+                                <th class="border px-4 py-2 bg-indigo-500">シフト</th>
                                 <th class="border px-4 py-2 bg-indigo-500">出勤</th>
                                 <th class="border px-4 py-2 bg-indigo-500">退勤</th>
+                                <th class="border px-4 py-2 bg-indigo-500">労働時間</th>
                                 <th class="border px-4 py-2 bg-indigo-500">休憩</th>
                                 <th class="border px-4 py-2 bg-indigo-500">残業</th>
                             </tr>
@@ -40,7 +41,7 @@
                                 @if(array_key_exists(date('Y-m-d', strtotime($select_month . '-' . $i)), $record))
                                     <tr class="text-center border odd:bg-indigo-100 even:bg-indigo-200">
                                         <td class="border px-4 py-2">{{ date('d', strtotime($select_month . '-' . $i)) }}</td>
-                                        <td class="border px-4 py-2"></td>
+                                        <td class="border px-4 py-2">{{ $record[date('Y-m-d', strtotime($select_month . '-' . $i))]->shift->shift_name }}</td>
                                         <td class="border px-4 py-2">
                                             @if(!is_null($record[date('Y-m-d', strtotime($select_month . '-' . $i))]->start_time))
                                                 {{ date("H:i:s", strtotime($record[date('Y-m-d', strtotime($select_month . '-' . $i))]->start_time)) }}
@@ -51,12 +52,14 @@
                                                 {{ date("H:i:s", strtotime($record[date('Y-m-d', strtotime($select_month . '-' . $i))]->end_time)) }}
                                             @endif
                                         </td>
+                                        <td class="border px-4 py-2">{{ \Calc::calcWorkingHours($record[date('Y-m-d', strtotime($select_month . '-' . $i))]->start_time, $record[date('Y-m-d', strtotime($select_month . '-' . $i))]->end_time) }}</td>
                                         <td class="border px-4 py-2">{{ $record[date('Y-m-d', strtotime($select_month . '-' . $i))]->break_time }}</td>
-                                        <td class="border px-4 py-2">サンプル</td>
+                                        <td class="border px-4 py-2">{{ \Calc::calcOverTime($record[date('Y-m-d', strtotime($select_month . '-' . $i))]->shift->shift_end, $record[date('Y-m-d', strtotime($select_month . '-' . $i))]->end_time, $record[date('Y-m-d', strtotime($select_month . '-' . $i))]->date) }}</td>
                                     </tr>
                                 @else
                                     <tr class="text-center border odd:bg-indigo-100 even:bg-indigo-200">
                                         <td class="border px-4 py-2">{{ date('d', strtotime($select_month . '-' . $i)) }}</td>
+                                        <td class="border px-4 py-2"></td>
                                         <td class="border px-4 py-2"></td>
                                         <td class="border px-4 py-2"></td>
                                         <td class="border px-4 py-2"></td>
