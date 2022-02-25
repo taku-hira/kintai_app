@@ -65,7 +65,7 @@ class AttendanceController extends Controller
     public function attendanceRecord()
     {
         $user_id = Auth::id();
-        $attendance_records = User::FindOrFail($user_id)->attendances()->get();
+        $attendance_records = User::FindOrFail($user_id)->attendance()->get();
 
         $record = [];
         foreach ($attendance_records as $attendance_record) {
