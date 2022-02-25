@@ -41,7 +41,11 @@
                                 @if(array_key_exists(date('Y-m-d', strtotime($select_month . '-' . $i)), $record))
                                     <tr class="text-center border odd:bg-indigo-100 even:bg-indigo-200">
                                         <td class="border px-4 py-2">{{ date('d', strtotime($select_month . '-' . $i)) }}</td>
-                                        <td class="border px-4 py-2">{{ $record[date('Y-m-d', strtotime($select_month . '-' . $i))]->shift->shift_name }}</td>
+                                        <td class="border px-4 py-2">
+                                            @if(!is_null($record[date('Y-m-d', strtotime($select_month . '-' . $i))]->shift_id))
+                                                {{ $record[date('Y-m-d', strtotime($select_month . '-' . $i))]->shift->shift_name }}
+                                            @endif
+                                        </td>
                                         <td class="border px-4 py-2">
                                             @if(!is_null($record[date('Y-m-d', strtotime($select_month . '-' . $i))]->start_time))
                                                 {{ date("H:i:s", strtotime($record[date('Y-m-d', strtotime($select_month . '-' . $i))]->start_time)) }}
@@ -54,7 +58,11 @@
                                         </td>
                                         <td class="border px-4 py-2">{{ \Calc::calcWorkingHours($record[date('Y-m-d', strtotime($select_month . '-' . $i))]->start_time, $record[date('Y-m-d', strtotime($select_month . '-' . $i))]->end_time) }}</td>
                                         <td class="border px-4 py-2">{{ $record[date('Y-m-d', strtotime($select_month . '-' . $i))]->break_time }}</td>
-                                        <td class="border px-4 py-2">{{ \Calc::calcOverTime($record[date('Y-m-d', strtotime($select_month . '-' . $i))]->shift->shift_end, $record[date('Y-m-d', strtotime($select_month . '-' . $i))]->end_time, $record[date('Y-m-d', strtotime($select_month . '-' . $i))]->date) }}</td>
+                                        <td class="border px-4 py-2">
+                                            @if(!is_null($record[date('Y-m-d', strtotime($select_month . '-' . $i))]->shift_id))
+                                            {{ \Calc::calcOverTime($record[date('Y-m-d', strtotime($select_month . '-' . $i))]->shift->shift_end, $record[date('Y-m-d', strtotime($select_month . '-' . $i))]->end_time, $record[date('Y-m-d', strtotime($select_month . '-' . $i))]->date) }}
+                                            @endif
+                                        </td>
                                     </tr>
                                 @else
                                     <tr class="text-center border odd:bg-indigo-100 even:bg-indigo-200">
