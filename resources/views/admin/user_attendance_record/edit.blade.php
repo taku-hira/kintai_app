@@ -21,6 +21,21 @@
                                         </ul>
                                     </div>
                                 @endif
+                                <div class="my-4 text-right">
+                                    <form id="delete_{{ $record->id }}" method="POST"
+                                    action="{{ route('admin.user_attendance_record.destroy',
+                                    [
+                                        'user_id' => $record->user_id,
+                                        'attendance_id' => $record->id
+                                    ]
+                                    ) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                            <a href="#" data-id="{{ $record->id }}" onclick="deletePost(this)" class="text-white bg-red-400 border-0 py-2 px-4 focus:outline-none hover:bg-red-500 rounded">
+                                                完全削除
+                                            </a>
+                                    </form>
+                                </div>
                                 <form action="{{ route('admin.user_attendance_record.update', ['user_id' => $record->user_id, 'attendance_id' => $record->id]) }}" method="POST">
                                     @csrf
                                     <div class="flex flex-wrap -m-2">
@@ -37,7 +52,9 @@
                                             <label for="shift" class="leading-7 text-sm text-gray-600">シフト</label>
                                             <select name="shift" id="shift">
                                                 @foreach ($shift_lists as $shift_list)
-                                                    <option value="{{ $shift_list->id }}">{{ $shift_list->shift_name }}</option>
+                                                    <option value="{{ $shift_list->id }}" @if ($record->shift_id == $shift_list->id) selected @endif>
+                                                        {{ $shift_list->shift_name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -65,7 +82,6 @@
                                         <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">更新</button>
                                     </div>
                                 </form>
-                                </div>
                             </div>
                         </div>
                     </section>
@@ -73,4 +89,5 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="{{ asset('/js/alert.js') }}"></script>
 </x-app-layout>

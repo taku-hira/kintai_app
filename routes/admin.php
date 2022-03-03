@@ -47,10 +47,11 @@ Route::prefix('shifts')->middleware(['auth:admin'])->group(function (){
 
 Route::prefix('user_attendance_record')->middleware(['auth:admin'])->group(function(){
     Route::get('index/{id}', [UserAttendanceRecordController::class, 'index'])->name('user_attendance_record.index');
-    Route::post('create/{id}', [UserAttendanceRecordController::class, 'create'])->name('user_attendance_record.create');
+    Route::get('create/{id}', [UserAttendanceRecordController::class, 'create'])->name('user_attendance_record.create');
     Route::post('store/{id}', [UserAttendanceRecordController::class, 'store'])->name('user_attendance_record.store');
     Route::get('edit/{user_id}/{attendance_id}', [UserAttendanceRecordController::class, 'edit'])->name('user_attendance_record.edit');
     Route::post('update/{user_id}/{attendance_id}', [UserAttendanceRecordController::class, 'update'])->name('user_attendance_record.update');
+    Route::delete('destroy/{user_id}/{attendance_id}', [UserAttendanceRecordController::class, 'destroy'])->name('user_attendance_record.destroy');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])

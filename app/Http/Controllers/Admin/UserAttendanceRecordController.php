@@ -33,6 +33,14 @@ class UserAttendanceRecordController extends Controller
     {
         $attendance_record = new Attendance();
 
+        $request->validate([
+            'shift_id' => ['int', 'nullable'],
+            'date' => ['required', 'date_format:Y-m-d'],
+            'start_time' => ['date_format:H:i', 'required', 'nullable'],
+            'end_time' => ['date_format:H:i', 'required', 'after:start_time', 'nullable'],
+            'break_time' => ['date_format:H:i', 'required',],
+        ]);
+
         $attendance_record->user_id = $id;
         $attendance_record->shift_id = $request->shift;
         $attendance_record->date = $request->date;
@@ -69,5 +77,13 @@ class UserAttendanceRecordController extends Controller
         $attendance_record->save();
 
         return redirect()->route('admin.user_attendance_record.index', ['id' => $user_id])->with('flash_message', '勤怠編集完了しました');
+    }
+
+    public function destroy($user_id, $attendance_id)
+    {
+        $attendance_record = User::FindOrFail($user_id)->attendance()->FindOrFail($attendance_id);
+
+        $attendance_record->forceDelete();
+        return redirect()->route('admin.user_attendance_record.index', ['id' => $user_id])->with('flash_message', '完全に削除しました');
     }
 }
