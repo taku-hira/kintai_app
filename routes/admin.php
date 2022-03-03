@@ -48,6 +48,7 @@ Route::prefix('shifts')->middleware(['auth:admin'])->group(function (){
 Route::prefix('user_attendance_record')->middleware(['auth:admin'])->group(function(){
     Route::get('index/{id}', [UserAttendanceRecordController::class, 'index'])->name('user_attendance_record.index');
     Route::get('edit/{user_id}/{attendance_id}', [UserAttendanceRecordController::class, 'edit'])->name('user_attendance_record.edit');
+    Route::post('update/{user_id}/{attendance_id}', [UserAttendanceRecordController::class, 'update'])->name('user_attendance_record.update');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
