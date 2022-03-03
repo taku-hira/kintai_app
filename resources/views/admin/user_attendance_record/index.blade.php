@@ -19,6 +19,11 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="p-6 bg-white border-b border-gray-200">
+                        @if (session('flash_message'))
+                            <div class="text-center w-1/2 mx-auto my-4 bg-blue-100 border border-blue-500 text-blue-700 px-4 py-3 rounded">
+                                {{ session('flash_message') }}
+                            </div>
+                        @endif
                         <div class="text-right my-4">
                             <form action="" method="get">
                                 @csrf
@@ -77,10 +82,14 @@
                                         </tr>
                                     @else
                                         <tr class="text-center border odd:bg-indigo-100 even:bg-indigo-200">
-                                            <td class="border px-4 py-2">{{ date('d', strtotime($select_month . '-' . $i)) }}</td>
-                                            <td class="border px-4 py-2">
-                                                <button onclick="location.href=''" class="text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded">編集</button>
-                                            </td>
+                                            <form action="{{ route('admin.user_attendance_record.create', ['id' => $user_id]) }}" method="post">
+                                                @csrf
+                                                <td class="border px-4 py-2">{{ date('d', strtotime($select_month . '-' . $i)) }}</td>
+                                                <td class="border px-4 py-2">
+                                                    <input type="hidden" name="date" value="{{ date('Y-m-d', strtotime($select_month . '-' . $i)) }}">
+                                                    <button onclick="location.href=''" class="text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded">編集</button>
+                                                </td>
+                                            </form>
                                             <td class="border px-4 py-2"></td>
                                             <td class="border px-4 py-2"></td>
                                             <td class="border px-4 py-2"></td>
