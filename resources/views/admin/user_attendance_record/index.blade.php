@@ -82,7 +82,7 @@
                                         </tr>
                                     @else
                                         <tr class="text-center border odd:bg-indigo-100 even:bg-indigo-200">
-                                            <form action="{{ route('admin.user_attendance_record.create', ['id' => $user_id]) }}" method="post">
+                                            <form action="{{ route('admin.user_attendance_record.create', ['id' => $user_id]) }}" method="get">
                                                 @csrf
                                                 <td class="border px-4 py-2">{{ date('d', strtotime($select_month . '-' . $i)) }}</td>
                                                 <td class="border px-4 py-2">
