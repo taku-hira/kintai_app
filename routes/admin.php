@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Users\UserController;
 use App\Http\Controllers\Admin\Users\SoftDeleteUserController;
 use App\Http\Controllers\Admin\ShiftController;
+use App\Http\Controllers\Admin\UserAttendanceRecordController;
 use App\Models\User;
 
 Route::get('/', function () {
@@ -42,6 +43,11 @@ Route::prefix('shifts')->middleware(['auth:admin'])->group(function (){
     Route::post('store', [ShiftController::class, 'store'])->name('shifts.store');
     Route::get('edit/{id}', [ShiftController::class, 'edit'])->name('shifts.edit');
     Route::post('update/{id}', [ShiftController::class, 'update'])->name('shifts.update');
+});
+
+Route::prefix('user_attendance_record')->middleware(['auth:admin'])->group(function(){
+    Route::get('index/{id}', [UserAttendanceRecordController::class, 'index'])->name('user_attendance_record.index');
+    Route::get('edit/{user_id}/{attendance_id}', [UserAttendanceRecordController::class, 'edit'])->name('user_attendance_record.edit');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])

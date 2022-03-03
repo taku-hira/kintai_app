@@ -25,6 +25,7 @@
                                             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">登録日</th>
                                             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                                             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                                            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -35,6 +36,9 @@
                                                 <td class="px-4 py-3">{{ Carbon\Carbon::create($user->created_at)->format('Y/m/d') }}</td>
                                                 <td class="px-4 py-3">
                                                     <button onclick="location.href='{{ route('admin.users.edit', ['id' => $user->id]) }}'" class="text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded">編集する</button>
+                                                </td>
+                                                <td class="px-4 py-3">
+                                                    <button onclick="location.href='{{ route('admin.user_attendance_record.index', ['id' => $user->id]) }}'" class="text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded">勤怠履歴</button>
                                                 </td>
                                                 <form id="delete_{{ $user->id }}" method="POST" action="{{ route('admin.users.destroy', ['id' => $user->id]) }}">
                                                     @csrf
