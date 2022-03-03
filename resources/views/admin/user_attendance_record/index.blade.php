@@ -45,7 +45,12 @@
                                         <tr class="text-center border odd:bg-indigo-100 even:bg-indigo-200">
                                             <td class="border px-4 py-2">{{ date('d', strtotime($select_month . '-' . $i)) }}</td>
                                             <td class="border px-4 py-2">
-                                                <button onclick="location.href=''" class="text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded">編集</button>
+                                                <button onclick="location.href='{{ route('admin.user_attendance_record.edit',
+                                                [
+                                                    'user_id' => $record[date('Y-m-d', strtotime($select_month . '-' . $i))]->user_id,
+                                                    'attendance_id' => $record[date('Y-m-d', strtotime($select_month . '-' . $i))]->id,
+                                                ]
+                                                ) }}'" class="text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded">編集</button>
                                             </td>
                                             <td class="border px-4 py-2">
                                                 @if(!is_null($record[date('Y-m-d', strtotime($select_month . '-' . $i))]->shift_id))
