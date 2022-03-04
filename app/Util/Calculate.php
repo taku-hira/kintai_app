@@ -24,8 +24,8 @@ class Calculate
 
     public static function calcOverTime($shift_end, $end_time, $date)
     {
-
-        $date = new Carbon($date);
+        if ($end_time) {
+            $date = new Carbon($date);
         $date = $date->format('Y-m-d');
 
         $shift_end = new Carbon($date . $shift_end);
@@ -39,5 +39,9 @@ class Calculate
         $over_time = new Carbon($over_time_unix);
 
         return $over_time->format('H:i');
+        } else {
+            return;
+        }
+
     }
 }
