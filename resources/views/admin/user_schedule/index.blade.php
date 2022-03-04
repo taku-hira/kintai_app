@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            従業員一覧
+            勤怠管理
         </h2>
     </x-slot>
 
@@ -22,7 +22,6 @@
                                         <tr>
                                             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">名前</th>
                                             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">メールアドレス</th>
-                                            <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">登録日</th>
                                             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                                             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                                             <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
@@ -33,26 +32,16 @@
                                             <tr>
                                                 <td class="px-4 py-3">{{ $user->name }}</td>
                                                 <td class="px-4 py-3">{{ $user->email }}</td>
-                                                <td class="px-4 py-3">{{ Carbon\Carbon::create($user->created_at)->format('Y/m/d') }}</td>
                                                 <td class="px-4 py-3">
-                                                    <button onclick="location.href='{{ route('admin.users.edit', ['id' => $user->id]) }}'" class="text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded">編集</button>
+                                                    <button onclick="location.href='{{ route('admin.user_schedule.create', ['id' => $user->id]) }}'" class="text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded">スケジュール登録</button>
                                                 </td>
-                                                <form id="delete_{{ $user->id }}" method="POST" action="{{ route('admin.users.destroy', ['id' => $user->id]) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <td class="px-4 py-3">
-                                                        <a href="#" data-id="{{ $user->id }}" onclick="deletePost(this)" class="text-white bg-red-400 border-0 py-2 px-4 focus:outline-none hover:bg-red-500 rounded">
-                                                            削除
-                                                        </a>
-                                                    </td>
-                                                </form>
+                                                <td class="px-4 py-3">
+                                                    <button onclick="location.href='{{ route('admin.user_attendance_record.index', ['id' => $user->id]) }}'" class="text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded">勤怠履歴</button>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <div class="w-full text-center my-4">
-                                    <button onclick="location.href='{{ route('admin.users.create') }}'" class="text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded">新規従業員登録</button>
-                                </div>
                             </div>
                         </div>
                     </section>

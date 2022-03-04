@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Users\UserController;
 use App\Http\Controllers\Admin\Users\SoftDeleteUserController;
 use App\Http\Controllers\Admin\ShiftController;
-use App\Http\Controllers\Admin\UserAttendanceRecordController;
+use App\Http\Controllers\Admin\Users\UserAttendanceRecordController;
+use App\Http\Controllers\Admin\Users\UserScheduleController;
 use App\Models\User;
 
 Route::get('/', function () {
@@ -52,6 +53,12 @@ Route::prefix('user_attendance_record')->middleware(['auth:admin'])->group(funct
     Route::get('edit/{user_id}/{attendance_id}', [UserAttendanceRecordController::class, 'edit'])->name('user_attendance_record.edit');
     Route::post('update/{user_id}/{attendance_id}', [UserAttendanceRecordController::class, 'update'])->name('user_attendance_record.update');
     Route::delete('destroy/{user_id}/{attendance_id}', [UserAttendanceRecordController::class, 'destroy'])->name('user_attendance_record.destroy');
+});
+
+Route::prefix('user_schedule')->middleware(['auth:admin'])->group(function (){
+    Route::get('index', [UserScheduleController::class, 'index'])->name('user_schedule.index');
+    Route::get('create/{id}', [UserScheduleController::class, 'create'])->name('user_schedule.create');
+    Route::post('store/{id}', [UserScheduleController::class, 'store'])->name('user_schedule.store');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
