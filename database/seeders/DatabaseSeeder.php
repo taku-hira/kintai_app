@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             ShiftSeeder::class,
             AttendancesSeeder::class,
+            UserApplicationSeeder::class,
         ]);
     }
 }

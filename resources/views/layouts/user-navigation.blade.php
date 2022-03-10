@@ -21,7 +21,7 @@
                     <x-nav-link :href="route('user.attendanceRecord')" :active="request()->routeIs('user.attendanceRecord')">
                         勤怠履歴
                     </x-nav-link>
-                    <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
+                    <x-nav-link :href="route('user.leave_application.index')" :active="request()->routeIs('user.leave_application.index')">
                         申請
                     </x-nav-link>
                 </div>
@@ -81,7 +81,7 @@
             <x-responsive-nav-link :href="route('user.attendanceRecord')" :active="request()->routeIs('user.attendanceRecord')">
                 勤怠履歴
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
+            <x-responsive-nav-link :href="route('user.leave_application.index')" :active="request()->routeIs('user.leave_application.index')">
                 申請
             </x-responsive-nav-link>
         </div>
