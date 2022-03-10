@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\AttendanceController;
+use App\Http\Controllers\User\LeaveApplicationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,15 @@ Route::post('/leaveWork', [AttendanceController::class, 'leaveWorkStamp'])
 Route::get('/attendanceRecord', [AttendanceController::class, 'attendanceRecord'])
     ->middleware('auth:users')
     ->name('attendanceRecord');
+
+Route::prefix('leave_application')->middleware(['auth:users'])->group(function(){
+    Route::get('index', [leaveApplicationController::class, 'index'])->name('leave_application.index');
+    Route::get('show/{id}', [leaveApplicationController::class, 'show'])->name('leave_application.show');
+    Route::get('create', [leaveApplicationController::class, 'create'])->name('leave_application.create');
+    Route::post('store', [leaveApplicationController::class, 'store'])->name('leave_application.store');
+    Route::get('edit/{id}', [leaveApplicationController::class, 'edit'])->name('leave_application.edit');
+    Route::put('update/{id}', [leaveApplicationController::class, 'update'])->name('leave_application.update');
+});
 
 
 require __DIR__.'/auth.php';
