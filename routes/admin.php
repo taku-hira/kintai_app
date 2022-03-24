@@ -12,9 +12,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Users\UserController;
 use App\Http\Controllers\Admin\Users\SoftDeleteUserController;
 use App\Http\Controllers\Admin\ShiftController;
+use App\Http\Controllers\Admin\LeaveApplicationApprovalController;
 use App\Http\Controllers\Admin\Users\UserAttendanceRecordController;
 use App\Http\Controllers\Admin\Users\UserScheduleController;
 use App\Models\User;
+use Illuminate\Console\Application;
 
 Route::get('/', function () {
     return view('admin.welcome');
@@ -59,6 +61,13 @@ Route::prefix('user_schedule')->middleware(['auth:admin'])->group(function (){
     Route::get('index', [UserScheduleController::class, 'index'])->name('user_schedule.index');
     Route::get('create/{id}', [UserScheduleController::class, 'create'])->name('user_schedule.create');
     Route::post('store/{id}', [UserScheduleController::class, 'store'])->name('user_schedule.store');
+});
+
+Route::prefix('leave_application_approval')->middleware(['auth:admin'])->group(function (){
+    Route::get('index', [LeaveApplicationApprovalController::class, 'index'])->name('leave_application_approval.index');
+    Route::get('show/{id}', [LeaveApplicationApprovalController::class, 'show'])->name('leave_application_approval.show');
+    Route::get('edit/{id}', [LeaveApplicationApprovalController::class, 'edit'])->name('leave_application_approval.edit');
+    Route::put('update/{id}', [LeaveApplicationApprovalController::class, 'update'])->name('leave_application_approval.update');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
