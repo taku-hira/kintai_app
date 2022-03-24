@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('admin.user_schedule.index')" :active="request()->routeIs('admin.user_schedule.index')">
                         勤怠管理
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.leave_application_approval.index')" :active="request()->routeIs('admin.leave_application_approval.index')">
+                        申請管理
+                    </x-nav-link>
                     <x-nav-link :href="route('admin.soft_delete_users.index')" :active="request()->routeIs('admin.soft_delete_users.index')">
                         削除済従業員
                     </x-nav-link>
@@ -83,6 +86,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.user_schedule.index')" :active="request()->routeIs('admin.user_schedule.index')">
                 勤怠管理
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.leave_application_approval.index')" :active="request()->routeIs('admin.leave_application_approval.index')">
+                申請管理
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.soft_delete_users.index')" :active="request()->routeIs('admin.soft_delete_users.index')">
                 削除済従業員

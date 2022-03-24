@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Attendance;
+use App\Models\LeaveApplication;
 use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
 
 class User extends Authenticatable
@@ -52,5 +53,10 @@ class User extends Authenticatable
     public function attendance()
     {
         return $this->hasMany(Attendance::class);
+    }
+
+    public function leaveApplication()
+    {
+        return $this->hasMany(LeaveApplication::class);
     }
 }
